@@ -1,4 +1,7 @@
 <?php 
+
+include ('status.php');
+
 $status_url = 'http://status.spiralworks-cloud.com';
 $cachet_token = 'AB9t4PZPp4D73EaM5AZy';
 #$email="glenn@mnltechnology.com";
@@ -45,34 +48,6 @@ function get_code($url) {
 	return curl_getinfo($ch, CURLINFO_HTTP_CODE);
 }
 
-//function to get incident status
-function get_status($status_url,$cachet_token,$stat_data) {
-        $uri = "$status_url/api/v1/components/groups/1";
-        $method = "GET";
-        return  send_stat($uri,$cachet_token,$stat_data,$method);
-}
-
-function update_status($status_url,$cachet_token,$stat_data,$component_id) {
-        $uri = "$status_url/api/v1/components/$component_id";
-        $method = "PUT";
-        return  send_stat($uri,$cachet_token,$stat_data,$method);
-}
-
-function create_new($status_url,$cachet_token,$stat_data) {
-        $uri = "$status_url/api/v1/components";
-        $method = "POST";
-        return  send_stat($uri,$cachet_token,$stat_data,$method);
-}
-//send curl request with headers
-function send_stat($uri,$cachet_token,$stat_data,$method) {
-        $ch = curl_init($uri);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $stat_data);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch,CURLOPT_HTTPHEADER, array("Content-Type: application/json", "X-Cachet-Token: $cachet_token"));
-        return curl_exec($ch);
-}
-
 //get operator domains
 $results = json_decode(query($parse,$token),true);
 foreach($results as $result) {
@@ -81,6 +56,7 @@ foreach($results as $result) {
 #		print $domain . "\n";
 		$code = get_code($domain);
 		$component_name = $domain;
+		$group_id = 1;
 		$link = "http://" . $domain;
 		if($code == 200 || $code == 302 || $code == 301) {
 			$component_status = 1;
@@ -90,7 +66,7 @@ foreach($results as $result) {
 			$component_status = 2;
 			}
 		$stat_data = json_encode(array("name" => "$component_name","status" => "$component_status","link" => "$link","group_id" => 1,"description" => "returned with status code $code"));
-		$stats = json_decode(get_status($status_url,$cachet_token,$stat_data),true);
+		$stats = json_decode(get_status($status_url,$cachet_token,$stat_data,$group_id),true);
 		$match = 0;
 		foreach($stats['data']['enabled_components'] as $stat) {
 #			print "$stat[name]" . "----->>>" . "$component_name" . "\n";
