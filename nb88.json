@@ -4,9 +4,9 @@
   "interval": 60,
   "monitors": [
     {
-      "name": "99uu999",
-      "url": "http://99uu999.com",
-      "metric_id": 1,
+      "name": "Newbet88",
+      "url": "http://nb88.co",
+      "metric_id": 3,
       "component_id": 0,
       "threshold": 80,
       "expected_status_code": 200,

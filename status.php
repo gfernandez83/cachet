@@ -16,6 +16,24 @@ function create_new($status_url,$cachet_token,$stat_data) {
         $method = "POST";
         return  send_stat($uri,$cachet_token,$stat_data,$method);
 }
+
+function get_incident_status($status_url,$cachet_token,$stat_data) {
+        $uri = "$status_url/api/v1/incidents";
+        $method = "GET";
+        return  send_stat($uri,$cachet_token,$stat_data,$method);
+}
+
+function update_incident_status($status_url,$cachet_token,$stat_data,$incident_id) {
+        $uri = "$status_url/api/v1/incidents/$incident_id";
+        $method = "PUT";
+        return  send_stat($uri,$cachet_token,$stat_data,$method);
+}
+
+function create_new_incident($status_url,$cachet_token,$stat_data) {
+        $uri = "$status_url/api/v1/incidents";
+        $method = "POST";
+        return  send_stat($uri,$cachet_token,$stat_data,$method);
+}
 //send curl request with headers
 function send_stat($uri,$cachet_token,$stat_data,$method) {
         $ch = curl_init($uri);

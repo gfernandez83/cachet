@@ -89,6 +89,18 @@ foreach($results as $result) {
 		if($match == 0) {
       			create_new($status_url,$cachet_token,$stat_data);
 			}
+		$incident_name = "$domain is not reachable" ;
+		$incident_data = json_encode(array("name" => "$incident_name","status" => "$incident_status","message" => "$domain is unreachable","description" => "returned with status code $code"));
+		$incidents = json_decode(get_incident_status($status_url,$cachet_token,$incident_data),true);
+		foreach($incidents['data'] as $incident) {
+			if($incident['component_id'] == $component_id && $incident['status != 4']) {
+			print "$incident[status]" . "\n";
+			}
+		}
+		switch ($component_status) {
+			
+		}
+
 		}
 	}
 }

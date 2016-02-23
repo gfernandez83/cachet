@@ -16,14 +16,19 @@ trap finish EXIT
 
 echo -n ${PID} > /tmp/check_cachet.lock
 
-ps aux|grep cachet-monitor |grep -v grep > /dev/null
-
-result=$?
-
-if [ "${result}"  -eq "0" ] 
+#ps aux|grep -e 99uu -e nb88 -e aubo |grep -v grep > /dev/null
+for i in 99uu nb88 aubo 
+do
+	ps aux|grep $i |grep -v grep > /dev/null
+	result=$?
+	echo  $result
+	if [ "${result}" -eq 0   ]
 	then 
-	echo "`date`: cachet-monitor is running." >> /var/log/check_cachet.log 2>&1
+	echo "`date`: cachet-monitor for ${i} is running." >> /var/log/check_cachet.log 2>&1
 	else 
-	echo "`date`: restarting cachet-monitor." >> /var/log/check_cachet.log 2>&1
-	nohup /usr/local/go/bin/cachet-monitor -c /etc/cachet/99uu.json > /var/log/cachet-monitor.log 2>&1 &
-fi
+	echo "`date`: starting ${i} cachet-monitor." >> /var/log/check_cachet.log 2>&1
+	nohup /usr/local/go/bin/cachet-monitor -c /etc/cachet/${i}.json > /var/log/cachet-monitor.log 2>&1 &
+	fi
+
+done
+

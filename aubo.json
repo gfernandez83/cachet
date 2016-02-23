@@ -4,9 +4,9 @@
   "interval": 60,
   "monitors": [
     {
-      "name": "99uu999",
-      "url": "http://99uu999.com",
-      "metric_id": 1,
+      "name": "aubo",
+      "url": "http://ab5565.com",
+      "metric_id": 4,
       "component_id": 0,
       "threshold": 80,
       "expected_status_code": 200,
