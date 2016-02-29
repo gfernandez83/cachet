@@ -4,11 +4,8 @@ include ('status.php');
 
 $status_url = 'http://status.spiralworks-cloud.com';
 $cachet_token = 'AB9t4PZPp4D73EaM5AZy';
-#$email="glenn@mnltechnology.com";
-#$pass="qwerty";
 $email="devops@mnltechnology.com";
 $pass="3ubhshEH6H";
-#$uri="http://staging-aws.prometheus-service.com/cms/admin/login";
 $uri="http://prometheus-service.com/cms/admin/login";
 $method="POST";
 
@@ -25,7 +22,6 @@ function send_curl($uri,$data_string,$method) {
 
 $get_token = json_decode(send_curl($uri,$data_string,$method),true);
 $token = $get_token['token'];
-#$parse = "http://staging-aws.prometheus-service.com/cms/admin/system/operator/";
 $parse = "http://prometheus-service.com/cms/admin/system/operator/";
 
 function query($parse,$token) {
@@ -47,7 +43,39 @@ function get_code($url) {
 	curl_exec($ch);
 	return curl_getinfo($ch, CURLINFO_HTTP_CODE);
 }
+/*function get_incidents($status_url,$cachet_token) {
+$incident_data = json_encode(array("name" => "$domain is unreachable", "status" => "$incident_status", "message:" => "checking"));
+	$incidents = json_decode(get_incident_status($status_url,$cachet_token,$incident_data));
+	$catch = 0;
+	foreach($incidends['data'] as $incident) {
+		if($incident['component_id'] == $component_id && $incident['status'] != 4) {
+				update_incident_status($status_url,$cachet_token,$incident_data,$incident_id);
+				$catch = 1;
+				break;	
+		}
+	}
+	if($catch == 0) {
+		create_new_incident($status_url,$cachet_token,$stat_data);	
+	}
+}
 
+function get_components($status_url,$cachet_token,$component_status,$component_name,$link,$code,$group_id) {	
+$stat_data = json_encode(array("name" => "$component_name","status" => "$component_status","link" => "$link","group_id" => $group_id,"description" => "returned with status code $code"));
+	$stats = json_decode(get_status($status_url,$cachet_token,$stat_data,$group_id),true);
+	$match = 0;
+	foreach($stats['data']['enabled_components'] as $stat) {
+     		if($stat['name'] === $component_name) {
+			$component_id = $stat['id'];
+                	update_status($status_url,$cachet_token,$stat_data,$component_id);
+			$match = 1;
+			break;
+        			}		
+			}	
+		if($match == 0) {
+      			create_new($status_url,$cachet_token,$stat_data);
+			}
+
+}*/
 //get operator domains
 $results = json_decode(query($parse,$token),true);
 foreach($results as $result) {
@@ -60,35 +88,18 @@ foreach($results as $result) {
 		switch ($code) {
     			case 200: case 301: case 302:
         			$component_status = 1;
-				$incident_status = 4;
         			break;
     			case 500: case 0: case 504: case 503: case 502:
         			$component_status = 4;
-				$incident_status = 2;
         			break;
     			case 522: case 520: case 523:
         			$component_status = 3;
-				$incident_status = 2;
         			break;
     			default:
         			$component_status = 2;
-				$incident_status = 2;
         			break;
 		}
-		$stat_data = json_encode(array("name" => "$component_name","status" => "$component_status","link" => "$link","group_id" => 1,"description" => "returned with status code $code"));
-		$stats = json_decode(get_status($status_url,$cachet_token,$stat_data,$group_id),true);
-		$match = 0;
-		foreach($stats['data']['enabled_components'] as $stat) {
-        		if($stat['name'] === $component_name) {
-			$component_id = $stat['id'];
-                	update_status($status_url,$cachet_token,$stat_data,$component_id);
-			$match = 1;
-			break;
-        			}		
-			}	
-		if($match == 0) {
-      			create_new($status_url,$cachet_token,$stat_data);
-			}
+		get_components($status_url,$cachet_token,$component_status,$component_name,$link,$code,$group_id);
 		}
 	}
 }

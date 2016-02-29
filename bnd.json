@@ -1,0 +1,17 @@
+{
+  "api_url": "http://status.spiralworks-cloud.com/api/v1",
+  "api_token": "AB9t4PZPp4D73EaM5AZy",
+  "interval": 2,
+  "monitors": [
+    {
+      "name": "bnd",
+      "url": "http://locust1.tokyo",
+      "metric_id": 6,
+      "component_id": 0,
+      "threshold": 80,
+      "expected_status_code": 200,
+      "strict_tls": true
+    }
+  ],
+  "insecure_api": false
+}
