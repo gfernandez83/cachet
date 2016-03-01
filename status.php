@@ -62,4 +62,9 @@ function send_stat($uri,$cachet_token,$stat_data,$method) {
         return curl_exec($ch);
 }
 
+function get_metrics($status_url,$cachet_token,$stat_data,$page_id,$id) {
+        $uri = "$status_url/api/v1/metrics/$id/points?page=$page_id";
+        $method = "GET";
+        return  send_stat($uri,$cachet_token,$stat_data,$method);
+}
 ?>
