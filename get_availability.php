@@ -6,8 +6,12 @@ $status_url = 'http://status.spiralworks-cloud.com';
 $cachet_token = 'AB9t4PZPp4D73EaM5AZy';
 $group_id = 4;
 $stat_data = json_encode(array("name" => "test", "status" => 4));
-$operator = $argv[1];
 
+if($_GET) {
+	$operator = $_GET['operator'];
+} else {
+	$operator = $argv[1];
+}
 function get_downtime ($start,$end) {
 		$interval = $start->diff($end);
 		$days = $interval->format('%d') * 1440;

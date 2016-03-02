@@ -43,39 +43,7 @@ function get_code($url) {
 	curl_exec($ch);
 	return curl_getinfo($ch, CURLINFO_HTTP_CODE);
 }
-/*function get_incidents($status_url,$cachet_token) {
-$incident_data = json_encode(array("name" => "$domain is unreachable", "status" => "$incident_status", "message:" => "checking"));
-	$incidents = json_decode(get_incident_status($status_url,$cachet_token,$incident_data));
-	$catch = 0;
-	foreach($incidends['data'] as $incident) {
-		if($incident['component_id'] == $component_id && $incident['status'] != 4) {
-				update_incident_status($status_url,$cachet_token,$incident_data,$incident_id);
-				$catch = 1;
-				break;	
-		}
-	}
-	if($catch == 0) {
-		create_new_incident($status_url,$cachet_token,$stat_data);	
-	}
-}
 
-function get_components($status_url,$cachet_token,$component_status,$component_name,$link,$code,$group_id) {	
-$stat_data = json_encode(array("name" => "$component_name","status" => "$component_status","link" => "$link","group_id" => $group_id,"description" => "returned with status code $code"));
-	$stats = json_decode(get_status($status_url,$cachet_token,$stat_data,$group_id),true);
-	$match = 0;
-	foreach($stats['data']['enabled_components'] as $stat) {
-     		if($stat['name'] === $component_name) {
-			$component_id = $stat['id'];
-                	update_status($status_url,$cachet_token,$stat_data,$component_id);
-			$match = 1;
-			break;
-        			}		
-			}	
-		if($match == 0) {
-      			create_new($status_url,$cachet_token,$stat_data);
-			}
-
-}*/
 //get operator domains
 $results = json_decode(query($parse,$token),true);
 foreach($results as $result) {

@@ -17,7 +17,7 @@ trap finish EXIT
 echo -n ${PID} > /tmp/check_cachet.lock
 
 #ps aux|grep -e 99uu -e nb88 -e aubo |grep -v grep > /dev/null
-for i in 99uu nb88 aubo 
+for i in 99uu nb88 aubo cms 
 do
 	ps aux|grep $i |grep -v grep > /dev/null
 	result=$?

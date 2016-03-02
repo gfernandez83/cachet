@@ -1,4 +1,18 @@
-pt
-200 http://cache.download.banner.blacktiger88.com/flash/41/launchcasino.html?game=sb&language=en&mode=offline
-200 http://99uu999.com
-200 http://locust1.tokyo
+GET /diagnostic/login HTTP/1.1
+Host: www.99uuuat.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Prometheus-ClientIp: 122.53.126.226
+Prometheus-BoId: 35
+X-Requested-With: XMLHttpRequest
+Accept-Language: zh-hans
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36
+App-Origin: http://www.99uuuat.com
+Accept: application/json, text/javascript, */*; q=0.01
+Prometheus-Domain: 99uuuat.com
+Referer: http://www.99uuuat.com/diagnostic-tool
+Accept-Encoding: gzip, deflate, sdch
+Cookie: _pk_id.2.dfd2=9c725595d4434a97.1452045618.13.1455874460.1455874460.; firstEnterUrlInSession=http%3A//www.99uuuat.com/; _pk_id.17.f5a4=a4350ebd1561c28f.1456225517.1.1456225517.1456225517.; _GPSLSC=xeNmAUQSE3; diagnostic_s=1E5F04F2-E012-41FE-930D-9A4CC6C5E7D4; diagnostic_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzM4NCJ9.eyJtZW1iZXJTZXNzaW9uSWQiOiIxRTVGMDRGMi1FMDEyLTQxRkUtOTMwRC05QTRDQzZDNUU3RDQiLCJtZW1iZXJJZCI6IjY4OTE4NyIsIm1lbWJlckNvZGUiOiJ5b3V5b3U3NiIsIm9wZXJhdG9ySWQiOiIzNSIsInBhbGF6em8iOiJleUpwZGlJNklsVjRhbHd2WjFFemIyTjBUbGR4V21sd2FYaDNWRUYzUFQwaUxDSjJZV3gxWlNJNkluY3JiM1J1VVZwMGR6SnFlbE4wUkZWcFJrYzNPWGM5UFNJc0ltMWhZeUk2SW1aa09EQmlZbUUwWmpNME5UTTJaV00zT0RNeU1EYzBaVEl3TjJFeVltUTRNbVpsWmpNMk1tSmlObVV6WkdJd01qazBOMkprWW1FMFpHWmpPREZrTURnaWZRPT0iLCJjdXJyZW5jeSI6IlJNQiIsInJlZmVycmVySWQiOiJSQk1OTVo2TSIsInJpc2tDYXRlZ29yeUlkIjoiTiIsInBheW1lbnRHcm91cCI6IkEiLCJjb3VudHJ5Q29kZSI6IkNOIiwiZG9tYWluIjoiOTl1dXVhdC5jb20iLCJpc3MiOiJodHRwOlwvXC9hcGkxLmxvY2FsZG9tYWluXC9hcGlcL3YyXC9tZW1iZXJzXC9zZXNzaW9ucyIsImlhdCI6MTQ1Njg4NTAxMywiZXhwIjoxNDU2ODk5NDEzLCJuYmYiOjE0NTY4ODUwMTMsImp0aSI6IjM0N2RlNTllM2Y2NjdlOTllNzZmNmU0MjE4YTBhYmM4In0.9QEegDZroWxSnIfIgf1_WrGbVNS1c2RsZtCHcrB6eP5PKNrlqBth9ZVtdzysvglW; laravel_session=54daefcc83c5be88543b0177cc671f948d2ae064
+
+
