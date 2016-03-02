@@ -22,6 +22,9 @@
 # m h  dom mon dow   command
 * * * * * /etc/cachet/check_cachet.sh >> /var/log/check_cachet.log 2>&1
 * * * * * /usr/bin/php /etc/cachet/ddos_check.php >> /var/log/ddos_check.log 2>&1
-* * * * * /usr/bin/php /etc/cachet/dnslookup.php >> /var/log/dnslookup.log 2>&1
-*/10 * * * * /usr/bin/php /etc/cachet/tcptraceroute-test.php >> /var/log/tcptraceroute-test.log 2>&1
-*/10 * * * * cd /etc/cachet/PrometheusShield && /bin/bash login-test.sh >> /var/log/login-test.log 2>&1
+#* * * * * /usr/bin/php /etc/cachet/dnslookup.php >> /var/log/dnslookup.log 2>&1
+#*/10 * * * * /usr/bin/php /etc/cachet/tcptraceroute-test.php >> /var/log/tcptraceroute-test.log 2>&1
+#*/10 * * * * cd /etc/cachet/PrometheusShield && /bin/bash login-test.sh >> /var/log/login-test.log 2>&1
+*/10 * * * * /usr/bin/php /etc/cachet/domain_status.php >> /var/log/domain_status.log 2>&1
+*/20 * * * * /usr/bin/php /etc/cachet/vendor_url_check.php >> /var/log/vendor_url.php.log 2>&1
+*/5 * * * * /usr/bin/php /etc/cachet/system_test.php >> /var/log/system_test.log 2>&1
