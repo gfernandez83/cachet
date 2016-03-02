@@ -64,7 +64,6 @@ function query_game($game_id,$group_id,$status_url,$cachet_token) {
          foreach($g_id as $id) {
                  $vendor_url ="http://nb88.com" . "$id";
                  $code = get_head($vendor_url);
-		 print "$id" . "------->>>>>>". "$code" . "\n";
 		 send_status($vendor_url,$group_id,$code,$status_url,$cachet_token);
 	}
 }
