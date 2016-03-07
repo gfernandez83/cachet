@@ -1,0 +1,1 @@
+/etc/cachet/status.php

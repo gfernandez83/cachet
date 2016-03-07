@@ -8,7 +8,6 @@ $email="devops@mnltechnology.com";
 $pass="3ubhshEH6H";
 $uri="http://prometheus-service.com/cms/admin/login";
 $method="POST";
-
 $data = array("email" => "$email","password" => "$pass","persistent" => "false");
 $data_string = json_encode($data);
 function send_curl($uri,$data_string,$method) {
@@ -35,11 +34,13 @@ function query($parse,$token) {
 
 //get domain status code
 function get_code($url) {
+	$user_agent="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 (cachet)";
 	$ch = curl_init($url);
 	curl_setopt($ch,CURLOPT_HEADER,true);
 	curl_setopt($ch,CURLOPT_NOBODY,true);
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
 	curl_setopt($ch,CURLOPT_TIMEOUT,10);
+	curl_setopt($ch,CURLOPT_USERAGENT,$user_agent);
 	curl_exec($ch);
 	return curl_getinfo($ch, CURLINFO_HTTP_CODE);
 }

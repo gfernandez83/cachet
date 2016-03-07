@@ -1,10 +1,11 @@
 <?php 
-function get_config($json) {
+function get_config($domain) {
 global $api_url,$api_token,$error,$message,$interval,$name,$url,$metric_id,$threshold,$expected_status_code;
-//$json=$argv[1];
 $error=false;
-if(file_exists($json) && filesize($json) != 0) {
-	$configs = json_decode(file_get_contents($json),true);
+if(file_exists($domain) && filesize($domain) != 0) {
+//	print $domain;
+	$configs = json_decode(file_get_contents($domain),true);
+	//print_r($configs);
 	if(!empty($configs['api_url'])) {
 		$api_url = $configs['api_url'];
 	}else {
@@ -56,7 +57,7 @@ if(file_exists($json) && filesize($json) != 0) {
 
 }else {
 	$error=true;
-	$message="config file could not be found or is empty.";	
+	print $message="config file could not be found or is empty.";	
 }
 }
 ?>

@@ -1,0 +1,89 @@
+
+div.metrics {
+	position: relative;
+        left: 15px;
+}
+div.nineuu {
+	position: absolute;
+        top: 25px;
+}
+
+div.cms {
+	position: absolute;
+        top: 225px;
+}
+
+div.apollo {
+	position: absolute;
+        top: 425px;
+}
+
+div.betsoft {
+	position: absolute;
+        top: 625px;
+}
+
+div.crescendo {
+	position: absolute;
+        top: 825px;
+}
+
+div.gpi {
+	position: absolute;
+        top: 1025px;
+}
+
+div.massimo {
+	position: absolute;
+        top: 1225px;
+}
+
+div.palazzo {
+	position: absolute;
+        top: 1425px;
+}
+
+div.png {
+	position: absolute;
+        top: 1625px;
+}
+
+div.graphs {
+	position: absolute;
+        left: 200px;
+}
+td.num {
+	font-size: 40;
+	font-weight: bold
+}
+td.name {
+	font-size: 20;
+	font-weight: 60;
+}
+div.nineuu_graph {
+        top: 15px;
+}
+div.cms_graph {
+        top: 205px;
+}
+div.apollo_graph {
+        top: 405;
+}
+div.betsoft_graph {
+        top: 605;
+}
+div.crescendo_graph {
+        top: 605;
+}
+div.gpi_graph {
+        top: 605;
+}
+div.massimo_graph {
+        top: 605;
+}
+div.palazzo_graph {
+        top: 605;
+}
+div.png_graph {
+        top: 605;
+}

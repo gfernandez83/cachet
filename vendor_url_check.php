@@ -135,7 +135,7 @@ foreach($vendor_names as $vendor_name) {
                                 }
                         	foreach($g_id as $id) {
 					list($rep['gameId'],$rep['gameName'],$rep['gameType']) = explode("|",$id);
-                                	$srch = array(":gameId",":gameName","gameType",":lang");
+                                	$srch = array(":gameId",":gameName",":gameType",":lang");
                                 	$rep_string = array("$rep[gameId]","$rep[gameName]","$rep[gameType]","en");
                                 	$vendor_url = str_replace($srch,$rep_string,$vendors[1]);
                                 	$code = get_head($vendor_url);

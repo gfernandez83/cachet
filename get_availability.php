@@ -27,7 +27,7 @@ do  {
 $incidents = json_decode(get_incident_status($status_url,$cachet_token,$stat_data,$page_id),true);
 $page_id += 1;
 foreach($incidents['data'] as $incident) {
-	if(strpos($incident['message'],"$operator") !== false && strpos($incident['created_at'],date("Y-m-d")) !== false) {
+	if(strpos($incident['name'],"$operator") !== false && strpos($incident['created_at'],date("Y-m-d")) !== false) {
 		$data[] = array($incident['status'],$incident['created_at']);
 	}
 }

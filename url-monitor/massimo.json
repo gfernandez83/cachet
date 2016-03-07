@@ -1,0 +1,10 @@
+{
+  "api_url": "http://status.spiralworks-cloud.com/api/v1",
+  "api_token": "AB9t4PZPp4D73EaM5AZy",
+  "interval": 60,
+  "name": "massimo",
+  "url": "http://redirector3.valueactive.eu/Casino/Default.aspx?applicationid=1024&theme=quickfire&usertype=5&sext1=demo&sext2=demo&csid=2712&serverid=2712&variant=TNG-Demo&gameid=MountOlympus&ul=zh-hans",
+  "metric_id": 9,
+  "threshold": 3,
+  "expected_status_code": 200
+}

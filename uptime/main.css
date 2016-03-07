@@ -1,0 +1,27 @@
+body, html {
+    font: 10pt Verdana,Arial,sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    color: #333;
+}
+div {
+    line-height: 1.4em;
+}
+#page {
+
+}
+#page_wrapper {
+
+}
+#main_menu {
+
+}
+#left {
+
+}
+
+table,th,td {
+	border: none;
+}

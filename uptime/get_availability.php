@@ -1,0 +1,1 @@
+/etc/cachet/get_availability.php
