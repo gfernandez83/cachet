@@ -70,7 +70,6 @@ while (true) {
 		if($check < $threshold) {
 			sleep(5);
 			$check += 1;
-			//continue; 
 		} else {
 			if(last_incident_status($api_url,$api_token,$stat_data,$name) != 1 ) {
 				$incident_status = 1;
@@ -79,7 +78,6 @@ while (true) {
 				create_incident($api_url,$api_token,$stat_data);
 				}
 			$check=1;
-			//continue;
 			}	
 		}
 	sleep($interval);	

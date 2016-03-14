@@ -21,6 +21,26 @@ function get_downtime ($start,$end) {
 		return $days + $hours + $minute + $seconds;	
 }
 
+function last_incident_status ($status_url,$cachet_token_token,$stat_data,$name) {
+        $data = array();
+        $page_id = 1;
+        do  {
+        $incidents = json_decode(get_incident_status($status_url,$cachet_token,$stat_data,$page_id),true);
+        $page_id += 1;
+        if(count($incidents) == 0 ) {
+                return 0;
+                exit ();
+        }
+        foreach($incidents['data'] as $incident) {
+                if(strpos($incident['name'],"$name") !== false) {
+                        $data[] = array($incident['name'],$incident['status'],$incident['created_at']);
+                        }
+                }
+        } while($incidents['meta']['pagination']['links']['next_page'] !== null);
+        $last = array_pop($data);
+        return $last[1];
+}
+$name = $operator;
 $data = array();
 $page_id = 1;
 do  {
@@ -54,6 +74,9 @@ while ($curr < $count) {
 		$start = new DateTime($data[$curr][1]);
 		$end = new DateTime($data[$next][1]);
 		$downtime[] = get_downtime($start,$end);
+	} elseif($data[$curr][0] == 4 && last_incident_status($api_url,$api_token,$stat_data,$name) != 4) {
+		$start = new DateTime(date("Y-m-d 00:00:00")); 
+		$end = new DateTime($data[$curr][1]);
 	}
 #	print_r($downtime);
 	$curr = $next;
