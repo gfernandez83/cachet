@@ -24,6 +24,7 @@ curl_close($ch);
 
 function last_incident_status ($api_url,$api_token,$stat_data,$name) {
 	$data = array();
+	$last = array();
         $page_id = 1;
         do  {
         $incidents = json_decode(get_incident_status($api_url,$api_token,$stat_data,$page_id),true);
@@ -38,6 +39,7 @@ function last_incident_status ($api_url,$api_token,$stat_data,$name) {
                        	}
                	}
         } while($incidents['meta']['pagination']['links']['next_page'] !== null);
+
 	$last = array_pop($data);
 	return $last[1];
 }

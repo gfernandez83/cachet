@@ -23,6 +23,7 @@ function get_downtime ($start,$end) {
 
 function last_incident_status ($status_url,$cachet_token_token,$stat_data,$name) {
         $data = array();
+	$last = array();
         $page_id = 1;
         do  {
         $incidents = json_decode(get_incident_status($status_url,$cachet_token,$stat_data,$page_id),true);
