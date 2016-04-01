@@ -187,7 +187,7 @@
 	<tr><td class=num><?php print file_get_contents('http://status.com/uptime/get_average.php?metric_id=13'); ?></td></tr>	
 	</table>
 	</div>
-</div>
+</div> 
 <div class=graphs>
 	<div class=graph_nineuu id="99uu_chart"></div>
 	<div class=cms_graph id="cms_chart"></div>

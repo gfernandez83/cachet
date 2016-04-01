@@ -53,7 +53,7 @@ while (true) {
 	if($returned_status_code == 200) {
 		if(last_incident_status($api_url,$api_token,$stat_data,$name) != 4 && last_incident_status($api_url,$api_token,$stat_data,$name) != 0) {
 			$incident_status = 4;
-			$stat_data = json_encode(array("name"=>"$name","message"=>"$name check succeeded","status"=>"$incident_status","visible"=>1));
+			$stat_data = json_encode(array("name"=>"$name","message"=>"updating $name check succeeded","status"=>"$incident_status","visible"=>1));
 			print "updating incident: $name check succeeded";
 			create_incident($api_url,$api_token,$stat_data);
 		}

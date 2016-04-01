@@ -11,13 +11,13 @@ $dbname = "cachetdb";
 $dbpass = "mypass2015";
 $dbuser = "cachet";
 
-$con = mysql_connect($dbserver,$dbuser,$dbpass) or die(mysql_error());
+$con = mysqli_connect($dbserver,$dbuser,$dbpass) or die(mysql_error());
 
-mysql_select_db($dbname,$con) or die(mysql_error());
+mysqli_select_db($con,$dbname) or die(mysqli_error());
 
-$sql_query = "select value,updated_at from (select * from metric_points where metric_id = $metric_id and updated_at>=DATE_SUB(NOW(), interval 3 hour) order by id desc) sub order by id asc";
+$sql_query = "select value,updated_at from (select * from metric_points where metric_id = $metric_id and updated_at>=DATE_SUB(NOW(), interval 2 hour) order by id desc) sub order by id asc";
 
-$results = mysql_query($sql_query) or die(mysql_error());
+$results = mysqli_query($con,$sql_query) or die(mysqli_error());
 
     $table = array();
     $table['cols'] = array(
@@ -25,7 +25,7 @@ $results = mysql_query($sql_query) or die(mysql_error());
         array('label' => 'response time', 'type' => 'number'),
         );
     $rows = array();
-    while ($r = mysql_fetch_assoc($results)) {
+    while ($r = mysqli_fetch_assoc($results)) {
         $temp = array();
 
         $DateArr = explode(' ', $r['updated_at']);

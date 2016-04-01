@@ -11,15 +11,15 @@ $dbname = "cachetdb";
 $dbpass = "mypass2015";
 $dbuser = "cachet";
 
-$con = mysql_connect($dbserver,$dbuser,$dbpass) or die(mysql_error());
+$con = mysqli_connect($dbserver,$dbuser,$dbpass) or die(mysqli_error());
 
-mysql_select_db($dbname,$con) or die(mysql_error());
+mysqli_select_db($con,$dbname) or die(mysqli_error());
 
 $query = "select round(avg(value)) as avg_response_time from metric_points where metric_id=$metric_id and DATE(created_at) = DATE(NOW());";
 
-$resp = mysql_query($query) or die(mysql_error());
+$resp = mysqli_query($con,$query) or die(mysqli_error());
 
-$average = mysql_fetch_assoc($resp);
+$average = mysqli_fetch_assoc($resp);
 
 print  $average['avg_response_time'] . "ms" . "\n";
 
