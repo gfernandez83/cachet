@@ -31,22 +31,26 @@ function last_incident_status ($api_url,$api_token,$stat_data,$name) {
         $page_id += 1;
 	if(count($incidents) == 0 ) {
  		return 0;
-		exit ();
+		exit();
 	}
         foreach($incidents['data'] as $incident) {
                	if(strpos($incident['name'],"$name") !== false) {
                        	$data[] = array($incident['name'],$incident['status'],$incident['created_at']);
+			if(empty($data)){
+				return 4;
+				exit();
+				} 
                        	}
                	}
         } while($incidents['meta']['pagination']['links']['next_page'] !== null);
 
 	$last = array_pop($data);
+	print $last[1];
 	return $last[1];
 }
 
 function run_request($url,$threshold,$name,$api_url,$api_token,$metric_id,$interval) {
 global $returned_status_code,$response_time,$curl_error,$stat_data;
-
 $check=1;
 while (true) {
 	monitor_url($url,$metric_id);
@@ -54,6 +58,7 @@ while (true) {
 		if(last_incident_status($api_url,$api_token,$stat_data,$name) != 4 && last_incident_status($api_url,$api_token,$stat_data,$name) != 0) {
 			$incident_status = 4;
 			$stat_data = json_encode(array("name"=>"$name","message"=>"updating $name check succeeded","status"=>"$incident_status","visible"=>1));
+			print_r($stat_data);
 			print "updating incident: $name check succeeded";
 			create_incident($api_url,$api_token,$stat_data);
 		}
@@ -61,17 +66,16 @@ while (true) {
 		print_r($rt);
 		if(count($rt) >= 5) {
 			$art = round(array_sum($rt)/count($rt));
-			print $art . "\n";
 			$stat_data = json_encode(array("id"=>"$metric_id","value"=>"$art"));
 			send_metrics_points($api_url,$api_token,$metric_id,$stat_data);
 			$rt=array();
 		}	
 		$check=1;
 	} else { 
-		print $check;
 		if($check < $threshold) {
 			sleep(5);
 			$check += 1;
+			continue;
 		} else {
 			if(last_incident_status($api_url,$api_token,$stat_data,$name) != 1 ) {
 				$incident_status = 1;
