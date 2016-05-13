@@ -20,7 +20,7 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-* * * * * /etc/cachet/check_cachet.sh >> /var/log/check_cachet.log 2>&1
+* * * * * /etc/cachet/url-monitor/check_monitor.sh >> /var/log/check_monitor.log 2>&1
 * * * * * /usr/bin/php /etc/cachet/ddos_check.php >> /var/log/ddos_check.log 2>&1
 #* * * * * /usr/bin/php /etc/cachet/dnslookup.php >> /var/log/dnslookup.log 2>&1
 #*/10 * * * * /usr/bin/php /etc/cachet/tcptraceroute-test.php >> /var/log/tcptraceroute-test.log 2>&1
