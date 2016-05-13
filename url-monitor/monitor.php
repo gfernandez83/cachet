@@ -53,11 +53,12 @@ function run_request($url,$threshold,$name,$api_url,$api_token,$metric_id,$inter
 global $returned_status_code,$response_time,$curl_error,$stat_data;
 $check=1;
 while (true) {
+	$last_status = last_incident_status($api_url,$api_token,$stat_data,$name);
 	monitor_url($url,$metric_id);
 	if($returned_status_code == 200) {
-		if(last_incident_status($api_url,$api_token,$stat_data,$name) != 4 && last_incident_status($api_url,$api_token,$stat_data,$name) != 0) {
+		if($last_status != 4 && $last_status != 0) {
 			$incident_status = 4;
-			$stat_data = json_encode(array("name"=>"$name","message"=>"updating $name check succeeded","status"=>"$incident_status","visible"=>1));
+			$stat_data = json_encode(array("name"=>"$name","message"=>"$last_status : updating $name check succeeded","status"=>"$incident_status","visible"=>1));
 			print_r($stat_data);
 			print "updating incident: $name check succeeded";
 			create_incident($api_url,$api_token,$stat_data);
@@ -77,7 +78,7 @@ while (true) {
 			$check += 1;
 			continue;
 		} else {
-			if(last_incident_status($api_url,$api_token,$stat_data,$name) != 1 ) {
+			if($last_status != 1 ) {
 				$incident_status = 1;
 				$stat_data = json_encode(array("name"=>"$name","message"=>"$curl_error","status"=>"$incident_status","visible"=>1));
 				print "creating incident: $curl_error";
