@@ -9,7 +9,7 @@ curl_setopt($ch,CURLOPT_NOBODY,true);
 curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
 curl_setopt($ch,CURLOPT_TIMEOUT,10);
 curl_setopt($ch,CURLOPT_USERAGENT,$user_agent);
-curl_setopt($ch,CURLOPT_VERBOSE,true);
+#curl_setopt($ch,CURLOPT_VERBOSE,true);
 curl_setopt($ch,CURLOPT_FOLLOWLOCATION,true);
 curl_setopt($ch,CURLOPT_MAXREDIRS,1);
 curl_setopt($ch,CURLOPT_FAILONERROR,true);
@@ -53,6 +53,7 @@ function run_request($url,$threshold,$name,$api_url,$api_token,$metric_id,$inter
 global $returned_status_code,$response_time,$curl_error,$stat_data;
 $check=1;
 while (true) {
+	$stat_data = json_encode(array("name"=>"$name"));
 	$last_status = last_incident_status($api_url,$api_token,$stat_data,$name);
 	monitor_url($url,$metric_id);
 	if($returned_status_code == 200) {
