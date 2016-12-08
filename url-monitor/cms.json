@@ -3,7 +3,7 @@
   "api_token": "AB9t4PZPp4D73EaM5AZy",
   "interval": 60,
   "name": "cms-api",
-  "url": "http://staging-aws.prometheus-service.com/",
+  "url": "http://cmsv2.staging.prom.spiralworks-cloud.com/user/login",
   "metric_id": 6,
   "threshold": 3,
   "expected_status_code": 200

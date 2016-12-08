@@ -33,6 +33,7 @@ function last_incident_status ($api_url,$api_token,$stat_data,$name) {
  		return 0;
 		exit();
 	}
+	#print_r($incidents);
         foreach($incidents['data'] as $incident) {
                	if(strpos($incident['name'],"$name") !== false) {
                        	$data[] = array($incident['name'],$incident['status'],$incident['created_at']);
@@ -53,7 +54,6 @@ function run_request($url,$threshold,$name,$api_url,$api_token,$metric_id,$inter
 global $returned_status_code,$response_time,$curl_error,$stat_data;
 $check=1;
 while (true) {
-	$stat_data = json_encode(array("name"=>"$name"));
 	$last_status = last_incident_status($api_url,$api_token,$stat_data,$name);
 	monitor_url($url,$metric_id);
 	if($returned_status_code == 200) {

@@ -35,10 +35,10 @@ function create_new($status_url,$cachet_token,$stat_data) {
         return  send_stat($uri,$cachet_token,$stat_data,$method);
 }
 
-function get_incident_status($status_url,$cachet_token,$page_id) {
+function get_incident_status($status_url,$cachet_token,$stat_data,$page_id) {
         $uri = "$status_url/api/v1/incidents?page=$page_id";
         $method = "GET";
-        return  send_stat($uri,$cachet_token,$method);
+        return  send_stat($uri,$cachet_token,$stat_data,$method);
 }
 
 function update_incident_status($status_url,$cachet_token,$stat_data,$incident_id) {
@@ -53,9 +53,13 @@ function create_new_incident($status_url,$cachet_token,$stat_data) {
         return  send_stat($uri,$cachet_token,$stat_data,$method);
 }
 //send curl request with headers
-function send_stat($uri,$cachet_token,$method) {
+function send_stat($uri,$cachet_token,$stat_data,$method) {
         $ch = curl_init($uri);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+	var_dump($method); 
+	if($method == "POST") { 
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $stat_data);
+	}
         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch,CURLOPT_HTTPHEADER, array("Content-Type: application/json", "X-Cachet-Token: $cachet_token"));
         return curl_exec($ch);

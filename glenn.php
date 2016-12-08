@@ -5,6 +5,7 @@ include ('status.php');
 $status_url = 'http://status.spiralworks-cloud.com';
 $cachet_token = 'AB9t4PZPp4D73EaM5AZy';
 $group_id = 4;
+$stat_data = json_encode(array("name" => "test", "status" => 4));
 
 if($_GET) {
 	$operator = $_GET['operator'];
@@ -46,12 +47,14 @@ $page_id = 1;
 do  {
 $incidents = json_decode(get_incident_status($status_url,$cachet_token,$page_id),true);
 $page_id += 1;
+var_dump($incidents);
 foreach($incidents['data'] as $incident) {
 	if(strpos($incident['name'],"$operator") !== false && strpos($incident['created_at'],date("Y-m-d")) !== false) {
 		$data[] = array($incident['status'],$incident['created_at']);
 	}
 }
-} while($incidents['meta']['pagination']['current_page'] < $incidents['meta']['pagination']['total_pages']  );
+
+} while($incidents['meta']['pagination']['current_page'] < $incidents['meta']['pagination']['total_pages']  ); 
 
 $curr = 0;
 $next = 1;

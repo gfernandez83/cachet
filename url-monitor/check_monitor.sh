@@ -30,6 +30,6 @@ do
 	echo "`date`: starting ${i} url-monitor." >> /var/log/check_${i}_monitor.log 2>&1
 	nohup /usr/bin/php /etc/cachet/url-monitor/url-monitor.php /etc/cachet/url-monitor/${i}.json > /var/log/check_${i}_monitor.log 2>&1 &
 	fi
-
+	sleep 10
 done
 
